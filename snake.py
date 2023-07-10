@@ -1,11 +1,12 @@
 from turtle import Turtle
-POSITIONS = [(0,0),(-20,0),(-40,0)]
+POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVEMENT = 20
 # Creating constants
 UP = 90
 DOWN = 270
 RIGHT = 0
 LEFT = 180
+
 
 class Snake:
     def __init__(self):
@@ -17,7 +18,6 @@ class Snake:
         for pos in POSITIONS:
             self.add_part(pos)
 
-
     def add_part(self, pos):
         chitti = Turtle(shape='square')
         chitti.penup()
@@ -25,8 +25,16 @@ class Snake:
         chitti.goto(pos)
         self.parts.append(chitti)
 
+    def reset(self):
+        for part in self.parts:
+            part.goto(1000, 1000)
+        self.parts.clear()
+        self.create_snake()
+        self.head = self.parts[0]
+
     def extend(self):
         self.add_part(self.parts[-1].position())
+
     def move(self):
         for part in range(len(self.parts) - 1, 0, -1):
             new_x = self.parts[part - 1].xcor()
@@ -36,16 +44,17 @@ class Snake:
         self.parts[0].fd(MOVEMENT)
 
     def up(self):
-        if self.head.heading() != DOWN :
+        if self.head.heading() != DOWN:
             self.head.setheading(UP)
+
     def down(self):
-        if self.head.heading() != UP :
+        if self.head.heading() != UP:
             self.head.setheading(DOWN)
+
     def right(self):
-        if self.head.heading() != LEFT :
+        if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
     def left(self):
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
-
-
