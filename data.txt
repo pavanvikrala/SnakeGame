@@ -1,1 +1,2 @@
+# This is the initial high score and it updates when the game is over
 0
